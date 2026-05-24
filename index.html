@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mokėjimo Langas</title>
+    <title>PayPal Sandorio Detalės</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
             flex-direction: column;
         }
 
-        /* Formos/Pasirinkimo stilius */
+        /* 1 ŽINGSNIS: Formos / Pasirinkimo langas */
         #setup-container {
             display: flex;
             justify-content: center;
@@ -61,12 +61,17 @@
             font-weight: 600;
         }
 
-        .input-group input {
+        .input-group input, .input-group textarea {
             width: 100%;
             padding: 12px 14px;
             border: 1px solid #d1d5db;
             border-radius: 8px;
             font-size: 16px;
+        }
+        
+        .input-group textarea {
+            resize: vertical;
+            height: 80px;
         }
 
         .btn-make {
@@ -87,7 +92,7 @@
             background-color: #005ea6;
         }
 
-        /* Pagrindinio puslapio stilius - užpildo visą ekraną */
+        /* 2 ŽINGSNIS: Sugeneruotas PayPal puslapio vaizdas */
         #main-site {
             display: none;
             flex-direction: column;
@@ -96,30 +101,46 @@
             background: #ffffff;
         }
 
-        /* Viršutinė navigacijos juosta (Meniu) */
+        /* Viršutinė mėlyna navigacija */
         .navbar {
             background-color: #142c8e;
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 55px;
-            height: 90px; /* Padidintas aukštis */
+            padding: 0 12%;
+            height: 80px;
             width: 100%;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        /* Mažas PayPal logotipas kairėje */
+        .paypal-logo {
+            font-size: 26px;
+            font-weight: 800;
+            font-style: italic;
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 35px; /* Didesni tarpai tarp nuorodų */
+            gap: 25px;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 19px; /* Didesnis šriftas */
+            font-size: 15px;
             font-weight: 500;
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
         .nav-links a:hover {
@@ -128,103 +149,194 @@
 
         .nav-links .active {
             background-color: rgba(255, 255, 255, 0.15);
-            padding: 10px 24px;
-            border-radius: 24px;
+            padding: 8px 18px;
+            border-radius: 20px;
             opacity: 1;
-            font-weight: 600;
         }
 
-        .nav-icons {
+        .nav-right {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 25px;
         }
 
         .logout-btn {
             color: white;
             text-decoration: none;
-            font-size: 17px;
+            font-size: 14px;
             font-weight: 600;
-            letter-spacing: 0.5px;
         }
 
-        /* Pagrindinis turinys */
+        /* Pagrindinė turinio dalis (Čekio detalės) */
         .content-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-            padding: 80px 40px; /* Didesni tarpai nuo viršaus/apačios */
             width: 100%;
+            padding: 40px 20px;
+            background-color: #ffffff;
         }
 
-        /* Čekio kortelė - dabar ji stambesnė ir didesnė */
-        .receipt-card {
-            border: 1px solid #e3e8ee;
-            border-radius: 28px; /* Labiau suapvalinti kampai */
+        .back-summary {
             width: 100%;
-            max-width: 760px; /* Padidintas maksimalus plotis */
-            padding: 70px 50px; /* Labai erdvus vidus */
-            text-align: center;
+            max-width: 840px;
+            text-align: left;
+            margin-bottom: 25px;
+        }
+
+        .back-summary a {
+            color: #0070ba;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Detalių kortelė */
+        .details-card {
+            width: 100%;
+            max-width: 840px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
             background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            margin-bottom: 50px;
+            overflow: hidden;
         }
 
-        .receipt-card h1 {
-            font-size: 38px; /* Stambus, didelis tekstas */
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 30px;
-            letter-spacing: -0.8px;
-            line-height: 1.25;
+        /* Viršutinė kortelės dalis (Vardas, data, suma) */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 40px;
+            border-bottom: 1px solid #e2e8f0;
         }
 
-        .receipt-card p {
-            font-size: 18px; /* Didesnis tekstas po apačia */
-            color: #000000;
-            margin-bottom: 30px;
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .receipt-card a {
-            color: #0070ba;
-            text-decoration: none;
+        /* Profilio nuotrauka – dabar visiškai balta */
+        .profile-pic-blank {
+            width: 55px;
+            height: 55px;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+        }
+
+        .profile-info h3 {
             font-size: 19px;
-            font-weight: 600;
-        }
-
-        .receipt-card a:hover {
-            text-decoration: underline;
-        }
-
-        /* Mygtukai po čekio kortele */
-        .btn-send-more {
-            background-color: #000000;
-            color: white;
-            border: none;
-            font-size: 19px; /* Padidintas mygtuko šriftas */
             font-weight: 700;
-            padding: 18px 50px; /* Stambesnis mygtukas */
-            border-radius: 35px;
+            color: #000000;
+            margin-bottom: 4px;
+        }
+
+        .profile-info p {
+            font-size: 14px;
+            color: #6c7378;
+        }
+
+        .header-amount {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        /* Pasikartojančio sandorio blokas */
+        .repeat-block {
+            padding: 30px 40px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .repeat-btn {
+            background: none;
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            margin-bottom: 30px;
-            transition: transform 0.1s;
         }
 
-        .btn-send-more:hover {
-            transform: scale(1.02);
+        .repeat-text {
+            font-size: 14px;
+            color: #000000;
+            line-height: 1.4;
         }
 
-        .link-summary {
+        /* Apatinė info tinklelio dalis */
+        .card-body {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .info-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .info-item p {
+            font-size: 15px;
+            color: #000000;
+            line-height: 1.5;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: #000000;
+            margin-bottom: 12px;
+        }
+
+        .info-row.total {
+            font-weight: 700;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* Kortelės apačia (Print / Report) */
+        .card-footer {
+            background-color: #fafafa;
+            padding: 25px 40px;
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-link {
             color: #0070ba;
             text-decoration: none;
-            font-size: 17px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-
-        .link-summary:hover {
-            text-decoration: underline;
+        
+        .footer-link.report {
+            color: #cc0000;
         }
     </style>
 </head>
@@ -232,63 +344,157 @@
 
     <div id="setup-container">
         <div class="setup-box">
-            <h2>Sukurti Thumbnail</h2>
+            <h2>Sukurti Detalų Thumbnail</h2>
             
             <div class="input-group">
-                <label for="money-input">Suma (€):</label>
-                <input type="text" id="money-input" placeholder="Pvz. 27.00" value="27.00">
+                <label for="owner-input">Gavėjo pavadinimas / Vardas:</label>
+                <input type="text" id="owner-input" placeholder="Pvz. Sorybo Family" value="Sorybo Family">
             </div>
 
             <div class="input-group">
-                <label for="owner-input">Gavėjo vardas ir pavardė:</label>
-                <input type="text" id="owner-input" placeholder="Pvz. Rokas Rokas" value="Rokas Rokas">
+                <label for="money-input">Suma (€):</label>
+                <input type="text" id="money-input" placeholder="Pvz. 0.15" value="0.15">
             </div>
 
-            <button class="btn-make" onclick="generateThumbnail()">Make</button>
+            <div class="input-group">
+                <label for="note-input">Note (Žinutė):</label>
+                <textarea id="note-input" placeholder="Pvz. spotify and phone bill">spotify and phone bill</textarea>
+            </div>
+
+            <button class="btn-make" onclick="generateInvoice()">Make</button>
         </div>
     </div>
 
     <div id="main-site">
         <div class="navbar">
-            <div class="nav-links">
-                <a href="#">Pagrindinis</a>
-                <a href="#" class="active">Siųsti ir prašyti</a>
-                <a href="#">Piniginė</a>
-                <a href="#">Veikla</a>
-                <a href="#">Pagalba</a>
+            <div class="nav-left">
+                <a href="#" class="paypal-logo">P</a>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Send and Request</a>
+                    <a href="#">Wallet</a>
+                    <a href="#" class="active">Activity</a>
+                    <a href="#">Help</a>
+                </div>
             </div>
-            <div class="nav-icons">
+            <div class="nav-right">
                 <div style="position: relative; cursor: pointer; display: flex; align-items: center;">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9J"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span style="position: absolute; top: -5px; right: -5px; background: #d9381e; color: white; border-radius: 50%; padding: 2px 6px; font-size: 11px; font-weight: bold;">1</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9J"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                    <span style="position: absolute; top: -7px; right: -7px; background: #d9381e; color: white; border-radius: 50%; padding: 1px 5px; font-size: 10px; font-weight: bold;">5</span>
                 </div>
                 <div style="cursor: pointer; display: flex; align-items: center;">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
                 </div>
-                <a href="#" class="logout-btn">ATSIJUNGTI</a>
+                <a href="#" class="logout-btn">LOG OUT</a>
             </div>
         </div>
 
         <div class="content-container">
-            <div class="receipt-card">
-                <h1 id="receipt-text">You've sent €27.00 EUR to Rokas Rokas</h1>
-                <p id="sub-receipt-text">We'll let Rokas Rokas know you've sent it.</p>
-                <a href="#">Tell us how this transaction went</a>
+            <div class="back-summary">
+                <a href="#">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Summary
+                </a>
             </div>
 
-            <button class="btn-send-more">Send More Money</button>
-            <a href="#" class="link-summary">Go to Summary</a>
+            <div class="details-card">
+                <div class="card-header">
+                    <div class="profile-section">
+                        <div class="profile-pic-blank"></div>
+                        <div class="profile-info">
+                            <h3 id="display-name">Sorybo Family</h3>
+                            <p id="display-date">21 April 2026 • Money Sent</p>
+                        </div>
+                    </div>
+                    <div class="header-amount" id="display-top-amount">-0,15 €</div>
+                </div>
+
+                <div class="repeat-block">
+                    <div class="repeat-btn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                    </div>
+                    <span class="repeat-text">Repeat this<br>transaction</span>
+                </div>
+
+                <div class="card-body">
+                    <div class="info-group">
+                        <div class="info-item">
+                            <h4>Paid with</h4>
+                            <div class="info-row">
+                                <span>PayPal balance</span>
+                                <span id="display-balance">0,15 €</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <h4>Transaction ID</h4>
+                            <p id="display-transaction-id">1GR3263053852733M</p>
+                        </div>
+                    </div>
+
+                    <div class="info-group">
+                        <div class="info-item">
+                            <h4>Contact info</h4>
+                            <p><a href="#" style="color: #0070ba; text-decoration: none; font-weight: 600;" id="display-msg-link">Message Sorybo Family</a></p>
+                        </div>
+                        <div class="info-item">
+                            <h4>Note</h4>
+                            <p id="display-note">spotify and phone bill</p>
+                        </div>
+                        <div class="info-item" style="margin-top: 10px;">
+                            <h4>Details</h4>
+                            <div class="info-row">
+                                <span id="display-details-label">Sent to Sorybo Family</span>
+                                <span id="display-subtotal">0,15 €</span>
+                            </div>
+                            <div class="info-row total">
+                                <span>Total</span>
+                                <span id="display-total">0,15 €</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="#" class="footer-link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                        Print details
+                    </a>
+                    <a href="#" class="footer-link report">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        Report a problem
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function generateThumbnail() {
-            const money = document.getElementById('money-input').value;
+        function generateInvoice() {
+            // Pasiimame reikšmes iš formos
             const owner = document.getElementById('owner-input').value;
+            const money = document.getElementById('money-input').value;
+            const note = document.getElementById('note-input').value;
 
-            document.getElementById('receipt-text').innerText = `You've sent €${money} EUR to ${owner}`;
-            document.getElementById('sub-receipt-text').innerText = `We'll let ${owner} know you've sent it.`;
+            // Sukuriame atsitiktinį netikrą Transaction ID, kad kaskart atrodytų unikaliai
+            const randomId = "1GR" + Math.floor(1000000000000 + Math.random() * 9000000000000) + "M";
 
+            // Prisitaikome šiandienos datą PayPal formatu (pvz., "24 May 2026")
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            const today = new Date().toLocaleDateString('en-GB', options);
+
+            // Įrašome reikšmes į čekį
+            document.getElementById('display-name').innerText = owner;
+            document.getElementById('display-date').innerText = `${today} • Money Sent`;
+            document.getElementById('display-top-amount').innerText = `-${money} €`;
+            document.getElementById('display-balance').innerText = `${money} €`;
+            document.getElementById('display-transaction-id').innerText = randomId;
+            document.getElementById('display-msg-link').innerText = `Message ${owner}`;
+            document.getElementById('display-note').innerText = note;
+            document.getElementById('display-details-label').innerText = `Sent to ${owner}`;
+            document.getElementById('display-subtotal').innerText = `${money} €`;
+            document.getElementById('display-total').innerText = `${money} €`;
+
+            // Perjungiame langus
             document.getElementById('setup-container').style.display = 'none';
             document.getElementById('main-site').style.display = 'flex';
         }
